@@ -77,11 +77,8 @@ const registerUser=async(req,res)=>{
         const newUser=new userModel({
             name,email,password:hashedPassword
         })
-
         const user=await newUser.save()
-
         const token=createToken((user._id))
-
         res.status(201).json({
             success:true,
             message: "SignUp || Register successful",
@@ -99,9 +96,6 @@ const registerUser=async(req,res)=>{
 const loginAdmin=async(req,res)=>{
 
 }
-
-
-
 
 export {loginUser,registerUser,loginAdmin}
 //^ OR if u used below then go to userRouter and use //commented code 
