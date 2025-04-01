@@ -15,7 +15,7 @@ const uploadMultipleFields = upload.fields([
 
 productRouter.post('/add',uploadMultipleFields,addProduct)
 productRouter.post('/remove',removeProduct)
-productRouter.post('/singleProduct',singleProduct)
+productRouter.post('/singleProduct',singleProduct) //^ OR using get ,productRouter.get('/singleProduct/:id',singleProduct)
 productRouter.get('/listProduct',listProduct)
 
 export default productRouter
