@@ -31,7 +31,7 @@ export default Title
 
 // export default Title;
 
-//^ But in above case if we have to use in LastestCollection file then it will be like
+//^ But in above case if we have to use that in LastestCollection.jsx file then it will be like
 // return (
 //     <div className='my-10'>
 //         <div className='text-center py-8 text-3xl'>
