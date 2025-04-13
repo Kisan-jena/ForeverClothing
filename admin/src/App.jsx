@@ -11,6 +11,8 @@ import Orders from './pages/Orders';
 import List from './pages/List';
 import Login from './components/Login';
 
+export const currency='$'
+
 const App = () => {
 
   const [token,setToken]=useState(localStorage.getItem('token') ? localStorage.getItem('token'):"")

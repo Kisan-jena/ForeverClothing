@@ -17,8 +17,9 @@ const addProduct = async(req,res)=>{
         // const images1 = [image1, image2, image3, image4].filter(img => img);
         // const images2 = [image1, image2, image3, image4].filter(Boolean);
 
+        
         const images=[image1,image2,image3,image4].filter((item)=>item !==undefined && item!=="")
-
+        console.log("images",images)
         let imageUrl = await Promise.all(                                                        // Promise.all([...]) waits for all these promises to resolve before proceeding ,This ensures that imageURl holds the array of resolved upload results.
               images.map(async(item)=>{
                 let result=await cloudinary.uploader.upload(item.path,{resource_type:'image'})
@@ -62,8 +63,8 @@ const addProduct = async(req,res)=>{
             date:Date.now()
         }
 
-        console.log(productData)
-        console.log(imageUrl)
+        console.log("productdata",productData)
+        console.log("imagesURL",imageUrl)
         const product= new productModel(productData)
         await product.save()
         res.status(201).json({ success: true, message: "Product added successfully", product })
