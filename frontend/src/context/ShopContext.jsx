@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { products } from "../assets/assets";
+import axios from 'axios'
 import { toast } from "react-toastify";
 
 export const ShopContext=createContext();
@@ -12,9 +13,12 @@ export const ShopContext=createContext();
 const ShopContextprovider=({children})=>{
     const currency="$";
     const delivery_fee=10;
+    const backendUrl=import.meta.env.VITE_BACKEND_URL
     const [search,setSearch]=useState('')
     const [showSearch,setShowSearch]=useState(true)
     const [cartItems,setCartitems]=useState({})
+    const [products,setProducts]=useState([])
+    const [token,setToken]=useState('')
     const navigate=useNavigate()
 
     const addToCart=(itemId,size)=>{
@@ -43,6 +47,7 @@ const ShopContextprovider=({children})=>{
                         totalCount+=cartItems[items][item]
                     }
                 }catch (error){
+                    console.log(error)
                     toast.error("something happen")
                 }
             }
@@ -74,10 +79,36 @@ const ShopContextprovider=({children})=>{
         return totalAmount
     }
 
+    const getProductData=async()=>{
+        try {
+            const response=await axios.get(backendUrl+'/api/product/listProduct')
+            if (response.data.success){
+                setProducts(response.data.products)
+            } else {
+                toast.error(response.data.message) 
+            }
+            
+        } catch (error) {
+            console.error( error);
+            toast.error(error.message)     
+        }
+    }
+
+    useEffect(()=>{
+        getProductData()
+    },[])
+
+    // after reloading also the token will store
+    useEffect(()=>{
+        if(!token && localStorage.getItem('token')){
+            setToken(localStorage.getItem('token'))
+        }
+    },[])
+
     const value={
         updateQuantity,getCartCount,products,currency,
-        delivery_fee,search,setSearch,showSearch,navigate,
-        setShowSearch,cartItems,addToCart,getCartAmount
+        delivery_fee,search,setSearch,showSearch,navigate,setCartitems,
+        setShowSearch,cartItems,addToCart,getCartAmount,backendUrl,token,setToken
     }
 
     return (

@@ -90,7 +90,7 @@ const Collection = () => {
   useEffect(() => {
     applyFilter()
     sortProduct()
-  }, [category, subCategory, products,sortType,search,showSearch])
+  }, [category, subCategory,products,sortType,search,showSearch])
 
   // Update Pagination
   useEffect(() => {

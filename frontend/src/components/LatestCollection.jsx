@@ -20,7 +20,7 @@ const LatestCollection = () => {
     // Function to update latest products
     const updateLatestProducts = () => {
       if (products.length > 0) {
-        setLatestProducts(products.slice(10, 20));
+        setLatestProducts(products.slice(0, 5));
       }
     };
 

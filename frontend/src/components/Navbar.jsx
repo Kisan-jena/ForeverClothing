@@ -45,6 +45,7 @@ import { useContext, useState } from 'react';
 import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
+import { toast } from 'react-toastify';
 
 const navLinks = [
   { name: "HOME", path: "/" },
@@ -55,7 +56,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch,getCartCount } = useContext(ShopContext);
+  const { setShowSearch,getCartCount,navigate,token,setToken,setCartitems} = useContext(ShopContext);
+
+  const logout=()=>{
+    localStorage.removeItem('token')
+    setToken('')
+    setCartitems({})
+    navigate('/login')
+    toast.success('Logout successfully')
+  }
 
   return (
     <div className='flex items-center justify-between py-5 px-4 sm:px-8 font-medium bg-white'>
@@ -79,13 +88,18 @@ const Navbar = () => {
         <img onClick={() => setShowSearch((prev) => !prev)} src={assets.search_icon} className='w-5 cursor-pointer' alt='Search' />
 
         <div className='relative group'>
-          <Link to='/login' ><img className='w-5 cursor-pointer' src={assets.profile_icon} alt='Profile' /></Link>
+          
+            <img onClick={()=>token ? null : navigate('/login')} className='w-5 cursor-pointer' src={assets.profile_icon} alt='Profile' />
+          
           {/* Profile Dropdown */}
+          {
+          token &&           
           <div className='absolute right-0 hidden group-hover:block bg-white shadow-lg rounded-md w-40 p-3'>
             <p className='cursor-pointer hover:text-black py-1'>My Profile</p>
             <p className='cursor-pointer hover:text-black py-1'>Orders</p>
-            <p className='cursor-pointer hover:text-black py-1'>Logout</p>
+            <p onClick={logout} className='cursor-pointer hover:text-black py-1'>Logout</p>
           </div>
+          }
         </div>
 
         {/* Cart */}

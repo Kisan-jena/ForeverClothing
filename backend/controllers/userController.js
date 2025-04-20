@@ -14,7 +14,7 @@ const loginUser=async(req,res)=>{
         const {email,password}=req.body;
         const user=await userModel.findOne({email})
         if (!user){
-            return res.res.status(404).json({success:false,Message:"User does not exist"})
+            return res.status(404).json({success:false,message:"User does not exist"})
         }
         const isPasswordValid=await bcrypt.compare(password,user.password)
         if (isPasswordValid) {      
@@ -39,7 +39,7 @@ const registerUser=async(req,res)=>{
     try {
         const exists=await userModel.findOne({email})
         if (exists) {
-            return res.json({success:false,Message:"User already exist"})
+            return res.json({success:false,message:"User already exist"})
         }
 
         //* Validation by using validator.js 
