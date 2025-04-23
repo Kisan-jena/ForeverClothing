@@ -96,7 +96,7 @@ const Navbar = () => {
           token &&           
           <div className='absolute right-0 hidden group-hover:block bg-white shadow-lg rounded-md w-40 p-3'>
             <p className='cursor-pointer hover:text-black py-1'>My Profile</p>
-            <p className='cursor-pointer hover:text-black py-1'>Orders</p>
+            <p onClick={()=>navigate('/orders')} className='cursor-pointer hover:text-black py-1'>Orders</p>
             <p onClick={logout} className='cursor-pointer hover:text-black py-1'>Logout</p>
           </div>
           }
