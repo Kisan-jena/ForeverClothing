@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import assets from '../assets/assets'
 import axios from 'axios'
-import backendUrl from '../config'
+import backendUrl from '../config.js'
 import { toast } from 'react-toastify'
 
 const Add = ({token}) => {

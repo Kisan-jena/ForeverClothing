@@ -35,6 +35,7 @@ const ShopContextprovider=({children})=>{
             cartData[itemId][size]=1
         }
         setCartitems(cartData)
+        console.log('cartdata:')
         console.log(cartData)
         
 
@@ -170,7 +171,8 @@ const ShopContextprovider=({children})=>{
     const value={
         updateQuantity,getCartCount,products,currency,
         delivery_fee,search,setSearch,showSearch,navigate,setCartitems,
-        setShowSearch,cartItems,addToCart,getCartAmount,backendUrl,token,setToken
+        setShowSearch,cartItems,addToCart,getCartAmount,backendUrl,token,
+        setToken
     }
 
     return (
