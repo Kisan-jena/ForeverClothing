@@ -12,7 +12,7 @@
 - **Image Storage:** Cloudinary
 
 ## 🧐 Features
-### ✅ Basic Features (Commpleted)
+### ✅ Basic Features (DONE ✔)
 - User authentication (login/register)
 - Product listing with categories
 - Shopping cart & checkout
@@ -40,11 +40,6 @@
 - Voice search integration
 - Subscription-based product purchases (e.g., monthly clothing box)
 - Custom outfit builder & styling recommendations
-
-## 🏷️ Development Progress
-1. [✔] Basic E-commerce functionalities (Based on the tutorial)
-2. [ ] Adding advanced features 
-3. [ ] UI/UX improvements
 
 ## 📌 Setup Instructions
 ### 1⃣ Clone the repository
