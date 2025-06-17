@@ -56,9 +56,16 @@ const navLinks = [
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch,getCartCount,navigate,token,setToken,setCartitems} = useContext(ShopContext);
+  const { setShowSearch, getCartCount, navigate, token, setToken, setCartitems } = useContext(ShopContext);
+  
+  // Function to handle admin tab navigation
+  const openAdminTab = (e) => {
+    e.preventDefault();
+    // Open admin in a named window/tab - if it exists, it will focus on it instead of opening a new tab
+    window.open("http://localhost:5174/", "adminPanel");
+  };
 
-  const logout=()=>{
+  const logout = () => {
     localStorage.removeItem('token')
     setToken('')
     setCartitems({})
@@ -71,8 +78,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to='/'>
         <img src={assets.logo} className='w-28 sm:w-36' alt='Logo' />
-      </Link>
-
+      </Link>      
       {/* Desktop Navigation */}
       <ul className='hidden md:flex gap-6 text-sm text-gray-700'>
         {navLinks.map((link, index) => (
@@ -80,7 +86,12 @@ const Navbar = () => {
             {link.name}
             <hr className='w-2/4 border-none h-[0.5px] bg-gray-700 hidden' />
           </NavLink>
-        ))}
+        ))}        
+        {/* Admin Link (smart tab handling) */}
+        <a href="http://localhost:5174/" onClick={openAdminTab} className='flex flex-col items-center gap-1 hover:text-black'>
+          ADMIN
+          <hr className='w-2/4 border-none h-[0.5px] bg-gray-700 hidden' />
+        </a>
       </ul>
 
       {/* Icons & Sidebar Menu */}
@@ -118,12 +129,21 @@ const Navbar = () => {
           <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-4 cursor-pointer bg-gray-100'>
             <img src={assets.dropdown_icon} className='h-4 rotate-180' alt='Back' />
             <p>Back</p>
-          </div>
-          {navLinks.map((link, index) => (
+          </div>          {navLinks.map((link, index) => (
             <NavLink key={index} to={link.path} onClick={() => setVisible(false)} className='py-3 pl-6 border-b hover:text-black'>
               {link.name}
             </NavLink>
-          ))}
+          ))}          {/* Admin Link in mobile menu (smart tab handling) */}
+          <a 
+            href="http://localhost:5174/"
+            onClick={(e) => {
+              setVisible(false);
+              openAdminTab(e);
+            }}
+            className='py-3 pl-6 border-b hover:text-black'
+          >
+            ADMIN
+          </a>
         </div>
       </div>
     </div>
