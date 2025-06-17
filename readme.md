@@ -12,7 +12,7 @@
 - **Image Storage:** Cloudinary
 
 ## 🧐 Features
-### ✅ Basic Features
+### ✅ Basic Features (Commpleted)
 - User authentication (login/register)
 - Product listing with categories
 - Shopping cart & checkout
@@ -45,7 +45,6 @@
 1. [✔] Basic E-commerce functionalities (Based on the tutorial)
 2. [ ] Adding advanced features 
 3. [ ] UI/UX improvements
-4. [ ] Testing & Deployment
 
 ## 📌 Setup Instructions
 ### 1⃣ Clone the repository
